@@ -1,9 +1,9 @@
 import json
 
-jsonClients =  open('datos.json')
-jsonClientsDic = open('datosDict.json')
-cadenaJsonClientes = json.load(jsonClients)
-dicJsonClientes = json.load(jsonClientsDic)
+
+pum = open("pum.json")
+cadenaPum = json.load(pum)
+
 
 class client:
     def __init__(self,id,name,accountBalance):
@@ -44,16 +44,12 @@ def instantiateClients2(jsonClients):
 def getClientFromJson(jsonClients,id):
     return jsonClients[id]
 
-#con instanciacion de objetos clientes, mayor seguridad, más lineas de código
-x = instantiateClients2(dicJsonClientes).items()
-for i,y in x:
-    print(i,y.getName())
 
 
 #sin usar la clase clientes, modificando directamente al archivo
-client = getClientFromJson(dicJsonClientes,"0003")
+client = getClientFromJson(cadenaPum,"3")
 print(client)
-client["accountBalance"] -= 1000
+client["accountBalance"] += 100000
 print(client)
-with open ("datosDict.json","w") as outfile:
-    json.dump(dicJsonClientes,outfile)
+with open ("pum.json","w") as outfile:
+    json.dump(cadenaPum,outfile)
